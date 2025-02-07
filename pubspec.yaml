@@ -1,0 +1,40 @@
+name: bitacora_mundi       # Nombre de tu app (en minúsculas y sin espacios)
+description: A travel journal app with real-time timeline and world map.
+
+# Versiones mínimas requeridas
+environment:
+  sdk: ">=3.0.0 <4.0.0"   # Dart 3.x
+  flutter: ">=3.0.0"       # Flutter 3.x o superior
+
+# Dependencias principales
+dependencies:
+  flutter:
+    sdk: flutter           # Paquete base de Flutter
+  flutter_map: ^6.0.0      # Mapa gratuito (OpenStreetMap)
+  riverpod: ^2.4.4         # Gestión de estado (similar a Provider)
+  hive: ^2.2.3             # Base de datos local (tipo NoSQL)
+  hive_flutter: ^1.1.0     # Integración de Hive con Flutter
+  geolocator: ^11.0.0      # Obtener ubicación del usuario
+  image_picker: ^1.0.4     # Seleccionar fotos desde la galería
+  latlong2: ^0.9.0         # Manejo de coordenadas para el mapa
+  flutter_riverpod: ^2.4.4
+  google_fonts: ^6.2.1
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/NotoSans-Regular.ttf
+    - family: NotoEmoji
+      fonts:
+        - asset: assets/fonts/NotoColorEmoji.ttf
+  assets:
+    - assets/fonts/
+
+# Dependencias de desarrollo (solo para tu máquina)
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.4.6     # Genera código automático (para Hive)
+  hive_generator: ^2.0.0   # Genera adaptadores de Hive
