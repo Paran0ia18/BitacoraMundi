@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter           # Paquete base de Flutter
-  flutter_map: ^6.0.0      # Mapa gratuito (OpenStreetMap)
+  flutter_map: 8.0.0      # Mapa gratuito (OpenStreetMap)
   riverpod: ^2.4.4         # Gestión de estado (similar a Provider)
   hive: ^2.2.3             # Base de datos local (tipo NoSQL)
   hive_flutter: ^1.1.0     # Integración de Hive con Flutter
@@ -19,6 +19,7 @@ dependencies:
   latlong2: ^0.9.0         # Manejo de coordenadas para el mapa
   flutter_riverpod: ^2.4.4
   google_fonts: ^6.2.1
+  flutter_map_cancellable_tile_provider: 3.1.0
 
 flutter:
   uses-material-design: true

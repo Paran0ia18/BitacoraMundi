@@ -9,17 +9,27 @@ final travelProvider = StateNotifierProvider<TravelNotifier, List<TravelEntry>>(
 class TravelNotifier extends StateNotifier<List<TravelEntry>> {
   TravelNotifier() : super([]);
 
-  // Cargar entradas desde Hive al iniciar
   Future<void> loadEntries() async {
     final entries = HiveService.travelEntries.values.toList();
-    state = entries;
+    state = entries; // Reemplaza el estado completo (no añade)
   }
 
   void addEntry(TravelEntry entry) {
-    // Evitar duplicados
-    if (state.any((e) => e.id == entry.id)) return;
+    if (state.any((e) => e.id == entry.id)) return; // Verifica duplicados
     
     state = [...state, entry];
-    HiveService.travelEntries.put(entry.id, entry); // Guardar con ID único
+    HiveService.travelEntries.put(entry.id, entry); // Guarda con ID único
+  }
+
+  // Método para limpiar duplicados (usar una vez)
+  void clearDuplicates() {
+    final uniqueEntries = state.fold<Map<String, TravelEntry>>(
+      {},
+      (map, entry) => map..putIfAbsent(entry.id, () => entry),
+    ).values.toList();
+
+    state = uniqueEntries;
+    HiveService.travelEntries.clear();
+    HiveService.travelEntries.addAll(uniqueEntries);
   }
 }

@@ -9,9 +9,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HiveService.init();
   
-  // Inicializar Provider y cargar datos
   final container = ProviderContainer();
-  await container.read(travelProvider.notifier).loadEntries();
+  await container.read(travelProvider.notifier).loadEntries(); // Cargar una vez
   
   runApp(
     UncontrolledProviderScope(

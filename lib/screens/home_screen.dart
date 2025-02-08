@@ -1,3 +1,4 @@
+import 'package:bitacora_mundi/screens/stats_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bitacora_mundi/widgets/world_map.dart';
@@ -19,7 +20,7 @@ class HomeScreen extends ConsumerWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.storage),
-            onPressed: () => _showStatsDialog(context, entries),
+    onPressed: () => ref.read(travelProvider.notifier).clearDuplicates(),
           ),
         ],
       ),
@@ -47,30 +48,23 @@ class HomeScreen extends ConsumerWidget {
   }
 
   void _showStatsDialog(BuildContext context, List<TravelEntry> entries) {
-    showDialog(
-      context: context,
-      builder: (_) => AlertDialog(
-        title: const Text("Estadísticas"),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Entradas totales: ${entries.length}"),
-            Text("Países visitados: ${_getUniqueCountries(entries).length}"),
-          ],
-        ),
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (_) => const StatsScreen()),
+  );
+
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: const Text("Cerrar"),
           ),
-        ],
-      ),
-    );
-  }
+        ];
+      
+    
+  
 
   Set<String> _getUniqueCountries(List<TravelEntry> entries) {
     // Implementación temporal (mejorar con geocoding)
     return entries.map((e) => "Pendiente").toSet();
   }
-}
+}}
